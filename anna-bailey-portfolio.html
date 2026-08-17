@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anna Bailey · Lifecycle & Demand Gen Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#4A0F1E;
+    --ink-soft:#6F2C2F;
+    --paper:#FBF4EF;
+    --paper-raised:#FDF8F5;
+    --line:rgba(122,97,105,0.28);
+    --signal:#6F2C2F;
+    --signal-soft:rgba(111,44,47,0.10);
+    --flag:#7C5C63;
+    --flag-soft:rgba(124,92,99,0.14);
+    --text:#211D21;
+    --text-muted:#8C8B85;
+    --lavender:#A9AFC5;
+    --mauve:#7A6169;
+    --dark-bg:#3B1420;
+    --dark-hover:#3A2333;
+    --display:'Cormorant Garamond', serif;
+    --body:'Jost', sans-serif;
+    --mono:'Jost', sans-serif;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:var(--body);
+    font-weight:300;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  h1,h2,h3{font-family:var(--display); font-style:italic; font-weight:500; color:var(--ink); margin:0; letter-spacing:0.2px;}
+  ::selection{background:var(--flag-soft); color:var(--ink);}
+  :focus-visible{outline:2px solid var(--flag); outline-offset:3px; border-radius:2px;}
+
+  /* ---------- NAV ---------- */
+  header.site{
+    position:sticky; top:0; z-index:40;
+    background:rgba(251,244,239,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:68px;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-family:var(--display); font-style:italic; font-weight:500; font-size:1.15rem; color:var(--ink); text-decoration:none;}
+  .brand .mark{
+    width:34px; height:34px; border-radius:50%;
+    background:var(--ink); color:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:0.78rem; font-weight:600; letter-spacing:0.02em;
+  }
+  .navlinks{display:flex; gap:2rem; list-style:none; margin:0; padding:0;}
+  .navlinks a{font-size:0.92rem; font-weight:500; text-decoration:none; color:var(--text-muted); transition:color .15s;}
+  .navlinks a:hover{color:var(--ink);}
+  .nav-cta{
+    font-family:var(--body); font-weight:600; font-size:0.88rem;
+    background:var(--ink); color:var(--paper);
+    padding:0.55rem 1.1rem; border-radius:3px; text-decoration:none;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--ink-soft);}
+  .menu-btn{display:none; background:none; border:1px solid var(--line); border-radius:4px; width:40px; height:40px; align-items:center; justify-content:center; cursor:pointer;}
+  .menu-btn span, .menu-btn span::before, .menu-btn span::after{
+    content:''; display:block; width:18px; height:2px; background:var(--ink); position:relative; transition:transform .2s;
+  }
+  .menu-btn span::before{position:absolute; top:-6px;}
+  .menu-btn span::after{position:absolute; top:6px;}
+
+  @media (max-width:780px){
+    .navlinks{
+      position:fixed; top:68px; left:0; right:0;
+      flex-direction:column; gap:0; background:var(--paper-raised);
+      border-bottom:1px solid var(--line);
+      max-height:0; overflow:hidden; transition:max-height .25s ease;
+    }
+    .navlinks.open{max-height:280px;}
+    .navlinks a{padding:14px 28px; width:100%; border-bottom:1px solid var(--line);}
+    .nav-cta{display:none;}
+    .menu-btn{display:flex;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{padding:88px 0 64px; position:relative; overflow:hidden;}
+  .eyebrow{
+    font-family:var(--body); font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--ink-soft); font-weight:500; margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.8rem); font-weight:500; line-height:1.08; max-width:14ch;
+  }
+  .hero .lede{
+    margin-top:22px; font-size:1.15rem; color:var(--text-muted); max-width:52ch; line-height:1.6;
+  }
+  .hero-ctas{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--body); font-weight:600; font-size:0.94rem; text-decoration:none;
+    padding:0.85rem 1.5rem; border-radius:3px; display:inline-block; transition:transform .15s, background .15s;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--ink); color:var(--paper);}
+  .btn-primary:hover{background:var(--ink-soft);}
+  .btn-ghost{background:transparent; color:var(--ink); border:1px solid var(--ink);}
+  .btn-ghost:hover{background:var(--ink); color:var(--paper);}
+
+  .spark-wrap{margin-top:60px;}
+  .spark-wrap svg{width:100%; height:auto; display:block;}
+  .spark-path{
+    fill:none; stroke:var(--signal); stroke-width:2.5;
+    stroke-linecap:round; stroke-linejoin:round;
+    stroke-dasharray:900; stroke-dashoffset:900;
+    animation:draw 1.8s ease-out 0.3s forwards;
+  }
+  .spark-dot{opacity:0; animation:fadein .5s ease-out 1.9s forwards;}
+  .spark-label{
+    font-family:var(--mono); font-size:0.72rem; fill:var(--text-muted);
+  }
+  .spark-label.strong{fill:var(--ink); font-weight:600;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes fadein{to{opacity:1;}}
+
+  /* ---------- axis divider ---------- */
+  .axis{
+    height:1px; background:var(--line); position:relative; margin:0 0;
+  }
+  .axis .wrap{position:relative; height:1px;}
+  .axis .tick{
+    position:absolute; top:-3px; width:1px; height:7px; background:var(--line);
+  }
+
+  /* ---------- RESULTS STRIP ---------- */
+  .results{padding:56px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--paper-raised);}
+  .results-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+  }
+  .stat{
+    padding:0 28px; border-left:1px solid var(--line);
+  }
+  .stat:first-child{border-left:none; padding-left:0;}
+  .stat .num{
+    font-family:var(--display); font-style:normal; font-size:2.5rem; font-weight:600; color:var(--ink); line-height:1;
+  }
+  .stat .lbl{
+    margin-top:10px; font-size:0.88rem; color:var(--text-muted); max-width:20ch;
+  }
+  @media (max-width:780px){
+    .results-grid{grid-template-columns:1fr 1fr; row-gap:32px;}
+    .stat:nth-child(3){border-left:none;}
+  }
+  @media (max-width:480px){
+    .results-grid{grid-template-columns:1fr; row-gap:24px;}
+    .stat{border-left:none !important; padding-left:0;}
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section.block{padding:96px 0;}
+  .block-head{max-width:640px; margin-bottom:56px;}
+  .block-head .eyebrow{margin-bottom:14px;}
+  .block-head h2{font-size:clamp(1.8rem,3vw,2.4rem); font-weight:500;}
+  .block-head p{margin-top:16px; color:var(--text-muted); font-size:1.05rem;}
+
+  /* ---------- CASE STUDIES (campaign log) ---------- */
+  .log-entry{
+    display:grid; grid-template-columns:180px 1fr; gap:36px;
+    padding:40px 0; border-top:1px solid var(--line);
+  }
+  .log-entry:last-child{border-bottom:1px solid var(--line);}
+  .log-meta{font-family:var(--body); font-size:0.8rem; color:var(--text-muted); letter-spacing:0.03em;}
+  .log-meta .tag{
+    display:inline-block; margin-top:10px; font-family:var(--body); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase;
+    background:var(--signal-soft); color:var(--signal); padding:4px 9px; border-radius:2px;
+  }
+  .log-entry h3{font-size:1.5rem; font-weight:500; margin-bottom:12px;}
+  .log-entry .desc{color:var(--text-muted); max-width:64ch; margin-bottom:20px;}
+  .log-stats{display:flex; gap:32px; flex-wrap:wrap;}
+  .log-stats div{border-left:2px solid var(--flag); padding-left:12px;}
+  .log-stats .n{font-family:var(--display); font-style:normal; font-weight:600; color:var(--ink); font-size:1.3rem; display:block;}
+  .log-stats .l{font-size:0.82rem; color:var(--text-muted);}
+  @media (max-width:700px){
+    .log-entry{grid-template-columns:1fr; gap:14px;}
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .service{background:var(--paper-raised); padding:36px 30px; display:flex; flex-direction:column;}
+  .service .idx{font-family:var(--display); font-style:italic; font-size:1.3rem; color:var(--flag); margin-bottom:18px;}
+  .service h3{font-size:1.25rem; font-weight:500; margin-bottom:12px;}
+  .service p{color:var(--text-muted); font-size:0.95rem; flex:1;}
+  .service .scope{
+    margin-top:20px; padding-top:16px; border-top:1px solid var(--line);
+    font-family:var(--body); font-size:0.78rem; letter-spacing:0.04em; color:var(--text-muted);
+  }
+  @media (max-width:780px){ .services-grid{grid-template-columns:1fr;} }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;}
+  .about-grid p{color:var(--text-muted); font-size:1.02rem; margin-bottom:16px;}
+  .toollist{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
+  .toollist span{
+    font-family:var(--body); font-size:0.75rem; letter-spacing:0.03em; background:var(--signal-soft); color:var(--signal);
+    padding:5px 11px; border-radius:2px;
+  }
+  .edu{margin-top:28px;}
+  .edu-item{padding:14px 0; border-top:1px solid var(--line);}
+  .edu-item:last-child{border-bottom:1px solid var(--line);}
+  .edu-item .deg{font-family:var(--display); font-style:italic; font-weight:500; color:var(--ink); font-size:1.05rem;}
+  .edu-item .school{color:var(--text-muted); font-size:0.88rem; margin-top:6px; line-height:1.6;}
+  @media (max-width:780px){ .about-grid{grid-template-columns:1fr; gap:40px;} }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact{background:var(--dark-bg); color:var(--paper); padding:96px 0 56px;}
+  .contact h2{color:var(--paper); font-size:clamp(1.9rem,4vw,2.6rem); max-width:16ch;}
+  .contact .lede{color:var(--lavender); margin-top:18px; max-width:48ch; font-size:1.05rem;}
+  .contact-row{display:flex; gap:16px; margin-top:36px; flex-wrap:wrap;}
+  .contact .btn-primary{background:var(--flag); color:var(--dark-bg);}
+  .contact .btn-primary:hover{background:var(--lavender);}
+  .contact .btn-ghost{border-color:var(--mauve); color:var(--paper);}
+  .contact .btn-ghost:hover{background:var(--dark-hover); color:var(--paper);}
+  .foot-meta{
+    margin-top:72px; padding-top:24px; border-top:1px solid var(--dark-hover);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-family:var(--mono); font-size:0.78rem; color:var(--mauve);
+  }
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="wrap">
+    <a href="#top" class="brand"><span class="mark">AB</span> Anna Bailey</a>
+    <ul class="navlinks" id="navlinks">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Start a project</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">B2B Lifecycle & Demand Generation</p>
+      <h1>I turn inboxes into pipeline.</h1>
+      <p class="lede">Marketing manager and lifecycle strategist with 6+ years building nurture programs, segmentation, and content journeys that move B2B buyers from first open to qualified pipeline.</p>
+      <div class="hero-ctas">
+        <a href="#work" class="btn btn-primary">See the results</a>
+        <a href="#services" class="btn btn-ghost">Work with me</a>
+      </div>
+
+      <div class="spark-wrap" aria-hidden="true">
+        <svg viewBox="0 0 900 200" preserveAspectRatio="none">
+          <path class="spark-path" d="M10,165 C 120,160 180,150 260,140 C 360,128 420,120 500,95 C 600,64 660,50 760,28 C 800,20 850,14 890,10" />
+          <circle class="spark-dot" cx="10" cy="165" r="4" fill="var(--text-muted)"/>
+          <circle class="spark-dot" cx="500" cy="95" r="4" fill="var(--flag)"/>
+          <circle class="spark-dot" cx="890" cy="10" r="5" fill="var(--signal)"/>
+          <text class="spark-label" x="10" y="185">Baseline</text>
+          <text class="spark-label strong" x="500" y="115">Nurture redesign</text>
+          <text class="spark-label strong" x="810" y="8" text-anchor="end">+120% conversions</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="axis"><div class="wrap"></div></div>
+
+  <!-- RESULTS STRIP -->
+  <section class="results">
+    <div class="wrap results-grid">
+      <div class="stat reveal">
+        <div class="num">120%</div>
+        <div class="lbl">Increase in lead conversions from redesigned nurture journeys</div>
+      </div>
+      <div class="stat reveal">
+        <div class="num">111.6%</div>
+        <div class="lbl">Lift in Content Binge Rate across PathFactory tracks</div>
+      </div>
+      <div class="stat reveal">
+        <div class="num">2.4M+</div>
+        <div class="lbl">Emails sent annually at above-benchmark open &amp; click rates</div>
+      </div>
+      <div class="stat reveal">
+        <div class="num">63.1%</div>
+        <div class="lbl">Engagement rate across nurture &amp; demand-gen campaigns</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK / CASE STUDIES -->
+  <section class="block" id="work">
+    <div class="wrap">
+      <div class="block-head reveal">
+        <p class="eyebrow">Selected work</p>
+        <h2>Campaign log</h2>
+        <p>A record of programs I've built and run, with the approach and the numbers they moved.</p>
+      </div>
+
+      <div class="log-entry reveal">
+        <div class="log-meta">Apr 2024 – Present<span class="tag">Lifecycle · HubSpot</span></div>
+        <div>
+          <h3>Full-funnel lifecycle email program</h3>
+          <p class="desc">Own and manage the complete lifecycle email program end-to-end, including segmentation, journey design, and messaging aligned to ICP and target segments, sending at a scale and consistency well above typical B2B benchmarks.</p>
+          <div class="log-stats">
+            <div><span class="n">120%</span><span class="l">lead conversion increase</span></div>
+            <div><span class="n">30.65%</span><span class="l">open rate</span></div>
+            <div><span class="n">2.09%</span><span class="l">click rate</span></div>
+            <div><span class="n">98.97%</span><span class="l">delivery rate</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="log-entry reveal">
+        <div class="log-meta">Ongoing<span class="tag">Content · PathFactory</span></div>
+        <div>
+          <h3>Content tracks for demand generation</h3>
+          <p class="desc">Built and curated content tracks that guide prospects through connected, self-paced content journeys, designed to keep buyers engaged longer and move more of them toward a qualified conversation.</p>
+          <div class="log-stats">
+            <div><span class="n">111.6%</span><span class="l">increase in Content Binge Rate</span></div>
+            <div><span class="n">63.1%</span><span class="l">engagement rate</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="log-entry reveal">
+        <div class="log-meta">Ongoing<span class="tag">Messaging · Positioning</span></div>
+        <div>
+          <h3>Product messaging &amp; positioning</h3>
+          <p class="desc">Developed core product messaging and positioning used across product pages, nurture journeys, and digital campaigns, then translated it into sales enablement resources so sales and customer success could carry the same story into every conversation.</p>
+          <div class="toollist" style="margin-top:4px;">
+            <span>Product pages</span><span>Messaging frameworks</span><span>Sales training materials</span><span>Blogs &amp; pillar pages</span><span>Fact sheets</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="axis"><div class="wrap"></div></div>
+
+  <!-- SERVICES -->
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="block-head reveal">
+        <p class="eyebrow">Freelance &amp; consulting</p>
+        <h2>Ways to work together</h2>
+        <p>I take on a limited number of freelance and consulting engagements alongside my full-time role. Scoped, HubSpot-first, and built around measurable pipeline impact.</p>
+      </div>
+
+      <div class="services-grid reveal">
+        <div class="service">
+          <div class="idx">01</div>
+          <h3>Lifecycle Email Audit</h3>
+          <p>A structured review of your existing nurture and lifecycle program, covering segmentation, journey logic, messaging, and deliverability, with a prioritized list of fixes.</p>
+          <div class="scope">Typical scope: 1–2 weeks</div>
+        </div>
+        <div class="service">
+          <div class="idx">02</div>
+          <h3>Nurture Program Build</h3>
+          <p>End-to-end design and build of segmented nurture journeys in HubSpot, from ICP-aligned messaging through automation setup and QA.</p>
+          <div class="scope">Typical scope: 3–6 weeks</div>
+        </div>
+        <div class="service">
+          <div class="idx">03</div>
+          <h3>Ongoing Program Management</h3>
+          <p>Monthly management of your email calendar, segmentation, and reporting, run the way an in-house lifecycle marketer would run it.</p>
+          <div class="scope">Typical scope: Monthly retainer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="axis"><div class="wrap"></div></div>
+
+  <!-- ABOUT -->
+  <section class="block" id="about">
+    <div class="wrap about-grid">
+      <div class="reveal">
+        <p class="eyebrow">About</p>
+        <h2 style="font-size:2rem; margin-bottom:20px;">Marketing that's measured, not guessed at.</h2>
+        <p>I'm a Marketing Manager with 6+ years in B2B demand generation and lifecycle marketing, currently owning the email program and content strategy at Tango. Before that, I ran integrated digital campaigns for clients as a Marketing Consultant at Vyral Marketing, and before that, I was on the other side of the industry entirely, reading manuscripts at a literary agency.</p>
+        <p>I care about the mechanics behind the metrics, things like segmentation logic, journey design, and messaging that's actually built around how a buyer moves, and I use tools like Claude and ChatGPT to scale content and campaign workflows without losing that precision.</p>
+        <div class="toollist">
+          <span>HubSpot</span><span>Salesforce</span><span>PathFactory</span><span>Klaviyo</span>
+          <span>ActiveCampaign</span><span>ZoomInfo</span><span>Zapier</span><span>Gong</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="edu">
+          <div class="edu-item">
+            <div class="deg">M.S. Publishing</div>
+            <div class="school">Pace University, Manhattan, New York, May 2018</div>
+          </div>
+          <div class="edu-item">
+            <div class="deg">B.A. English &amp; Communication Studies</div>
+            <div class="school">Creighton University, Omaha, Nebraska, May 2015</div>
+          </div>
+        </div>
+
+        <p class="eyebrow" style="margin-top:44px;">Off the clock</p>
+        <div class="edu">
+          <div class="edu-item">
+            <div class="deg">Reading</div>
+            <div class="school">Before HubSpot, I was reading manuscripts at a literary agency, and the M.S. in Publishing was really just my excuse to make it official. I still can't walk past a bookstore without "just going in to look," which never once has been true.</div>
+          </div>
+          <div class="edu-item">
+            <div class="deg">Running</div>
+            <div class="school">Not training for anything, not chasing a PR, just the kind of running that's for feeling good, which is apparently a controversial way to do it.</div>
+          </div>
+          <div class="edu-item">
+            <div class="deg">Mom life</div>
+            <div class="school">Currently raising a very small, very opinionated human, and it turns out toddlers and target audiences have more in common than you'd think: strong preferences, zero patience, and a message either lands or it doesn't.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow" style="color:var(--lavender);">Let's talk</p>
+      <h2>Have a lifecycle program that needs work? Let's fix it.</h2>
+      <p class="lede">Open to freelance projects, consulting engagements, and full-time remote roles in B2B marketing.</p>
+      <div class="contact-row">
+        <a href="mailto:bailey.anna231@gmail.com" class="btn btn-primary">Email me</a>
+        <a href="tel:+14023808181" class="btn btn-ghost">(402) 380-8181</a>
+      </div>
+      <div class="foot-meta">
+        <span>Anna Bailey · Omaha, NE (Remote)</span>
+        <span>bailey.anna231@gmail.com</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // mobile nav toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const navlinks = document.getElementById('navlinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navlinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navlinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
